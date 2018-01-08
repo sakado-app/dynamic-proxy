@@ -53,6 +53,7 @@ func handle(writer http.ResponseWriter, request *http.Request) {
 		fmt.Printf("I.P. set to '%s'", ip)
 		fmt.Fprintln(writer, "OK")
 	} else if path == "get" {
+		writer.Header().Set("Access-Control-Allow-Origin", "*")
 		fmt.Fprintln(writer, ip)
 	} else {
 		fmt.Fprintln(writer, "Unknown request")
