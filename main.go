@@ -20,7 +20,6 @@ var ip string
 func main() {
 	token = genToken(TokenLength)
 
-	rand.Seed(time.Now().UnixNano())
 	http.HandleFunc("/", handle)
 
 	fmt.Printf("Token : %s\n", token)
@@ -29,6 +28,8 @@ func main() {
 }
 
 func genToken(length int) string {
+	rand.Seed(time.Now().UnixNano())
+	
 	b := make([]rune, length)
 	for i := range b {
 		b[i] = letterRunes[rand.Intn(len(letterRunes))]
