@@ -12,9 +12,7 @@ BUILD := `git rev-parse HEAD`
 LDFLAGS=-ldflags "-X=main.Version=$(VERSION) -X=main.Build=$(BUILD)"
 SRC = $(shell find . -type f -name '*.go' -not -path "./vendor/*")
 
-.PHONY: all build clean install uninstall fmt run
-
-all: install
+.PHONY: build clean fmt run
 
 $(TARGET): $(SRC)
 	@go build $(LDFLAGS) -o $(TARGET)
@@ -24,12 +22,6 @@ build: $(TARGET)
 
 clean:
 	@rm -f $(TARGET)
-
-install:
-	@go install $(LDFLAGS)
-
-uninstall: clean
-	@rm -f $$(which ${TARGET})
 
 fmt:
 	@gofmt -l -w $(SRC)
