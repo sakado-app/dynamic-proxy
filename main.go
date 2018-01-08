@@ -50,7 +50,7 @@ func handle(writer http.ResponseWriter, request *http.Request) {
 
 		ip = remote[:index]
 
-		fmt.Printf("I.P. set to '%s'", ip)
+		fmt.Printf("I.P. set to '%s'\n", ip)
 		fmt.Fprintln(writer, "OK")
 	} else if path == "get" {
 		writer.Header().Set("Access-Control-Allow-Origin", "*")
